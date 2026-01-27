@@ -1,0 +1,224 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+* {
+	box-sizing: border-box;  
+  /* includes the border and padding in the width and height */
+}
+body {
+  color: blue; 
+  font-family: arial;
+}
+
+div.main {
+  background-color: lightgray; 
+  width: 95%; 
+  margin-left:5%; 
+}
+
+#vote {
+  width: 95%;
+  margin: 3% auto;
+  box-sizing: border-box;  /* includes the border and padding in the width and height */
+}
+
+body {color: blue; 
+      font-family: arial;
+}
+/* heading part being styled */
+div.main {
+  background-color: lightgray; 
+  width: 95%; margin-left:5%; 
+  clear:left; 
+}
+
+#vote {
+  width: 70%;
+  margin: 3% 5%;
+  display: flex;
+}
+
+#vote > a:nth-child(1) {
+  -ms-transform: rotate(-20deg); /* IE 9 */
+  -webkit-transform: rotate(-20deg); /* Safari */
+  transform: rotate(-20deg);
+  margin-right: 20px;
+  transition: 0.5s;
+}
+
+#vote > a:nth-child(1):hover {
+  -ms-transform: rotate(20deg); /* IE 9 */
+  -webkit-transform: rotate(20deg); /* Safari */
+  transform: rotate(20eg);
+}
+
+/* appearance of the link to shuffle display */
+#shuffle, #home{
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -webkit-transform: rotate(90deg); /* Safari */
+  transform: rotate(90deg);
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  position: fixed;
+  bottom:50px;
+  right: -45px;
+  padding: 10px;
+  cursor: pointer;
+  letter-spacing:2px;
+  border-radius: 0px 0px 15px 15px; 
+}
+#shuffle {
+  z-index: 3;
+}
+
+#home {
+  right: 0;
+}
+
+#shuffle:hover {
+	color: red;
+}
+
+/* for the links to the projects */
+div.gallery {
+  position: relative;
+}
+
+div.gallery  div {
+  position: absolute;
+}
+
+div.gallery {
+  margin: 5px;
+  margin-bottom: 10px;
+  border: 1px solid black;
+  float: left;
+  width: 293px;
+  height: 155px;
+  /*opacity: 0.65;*/
+}
+
+div.gallery  div:first-child {
+  z-index: 2
+}
+
+div.gallery  div:last-child {
+  z-index: 1
+}
+
+div.gallery img {
+  width: 100%;
+  height: 150px;
+}
+
+div.gallery:hover img {
+   opacity: 0.25
+}
+
+div.gallery:hover div:last-child {
+  z-index:2;
+}
+
+div.desc {
+  padding-left: 5px;
+  margin-left: 5px;
+  height: 145px;
+  overflow: auto; 
+  margin-top: 5px;
+}
+div.desc p  {
+  color: black;
+  padding: 2px;
+  font-size: 0.5;
+}
+
+a {
+  text-decoration: none;
+  /*font-weight: bold; */
+  color:  #85c1ff; 
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.38);
+}
+
+a:hover { 
+  color:maroon; 
+}
+
+div.gallery img {
+  width: 290px; 
+  height:150px
+}
+
+/*----- for aboutwd.html */
+div.content {
+  width: 90%;
+  height: 100vh;
+  margin: 0 auto;
+  background: #E9F1FA;
+  color: navy;
+  padding: 10px;
+  overflow: auto;
+}
+div.content > h1 {
+  text-align: center;
+}
+div.content > h1 {
+  text-align: center;
+  text-shadow: 4px 4px 2px white,
+               6px 6px 6px rgba(0,0,0,0.6);
+  font-size: 3em;
+}
+div.content > p, h2, div.content > div {
+  width: 90%;
+  text-align: justify;
+  margin-left: 5%;
+  font-size: 1.5rem;
+}
+
+div.content > div {
+  display: flex;
+  margin-left: 10%;
+}
+div.tgallery {
+  width: 25%;
+  height: 9vh;
+  margin-right: 5%;
+  text-align: center;
+}
+div.tgallery img {
+  width: 100%;
+  height: 100%;
+}
+
+#home {
+  right: 0;
+}
+#home a {
+  color: white;
+}
+
+#home:hover a {
+	color: red;
+}
+
+footer {
+  width: 100%;
+  color: white;
+  background: black;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 5px;
+  z-index: 2;
+  opacity: 0.75;
+  text-align: center;
+  margin: 0;
+}
+/* -- for responsive website */
+@media only screen and (max-width: 600px) {
+  /*#vote img {
+    width: 75%;
+    height: 75%;
+  }*/
+}
