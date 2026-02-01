@@ -552,38 +552,88 @@ stat:true
 
 
 
+    var viewMode = "section"; // Default to section view
+    
     function dispProj() {
-        var x;
-        var genNum = [];
-        var numProj = Math.floor(Math.random() * links.length);
-        for (let i = 0; i < links.length; i++) {
-            // update list of used number
-            genNum.push(numProj);
-            // check if the generated random number is already used.	
-            numProj = Math.floor(Math.random() * links.length)
-            x = genNum.indexOf(numProj)
-            if (genNum.length == links.length)
-                break;
-            while (x >= 0) {
+        if (viewMode === "random") {
+            // Original random display logic
+            var x;
+            var genNum = [];
+            var numProj = Math.floor(Math.random() * links.length);
+            for (let i = 0; i < links.length; i++) {
+                // update list of used number
+                genNum.push(numProj);
+                // check if the generated random number is already used.
                 numProj = Math.floor(Math.random() * links.length)
                 x = genNum.indexOf(numProj)
+                if (genNum.length == links.length)
+                    break;
+                while (x >= 0) {
+                    numProj = Math.floor(Math.random() * links.length)
+                    x = genNum.indexOf(numProj)
+                }
             }
-        }
-        // construct content of the body
-        var tobeDisp = ""
-        for (let i = 0; i < links.length; i++) {
-            tobeDisp +=
-                '<div class="gallery">' +
-                '<a target="_blank" href="' + links[genNum[i]].url + '">' +
-                '<div> <img src="img\\' + links[genNum[i]].icon + '" /></div>' +
-                '<div class="desc"><span>' + links[genNum[i]].title + '</span>' +
-                '<p>' + links[genNum[i]].desc + '</p></div>' +
-                '</a></div>'
-
+            // construct content of the body
+            var tobeDisp = ""
+            for (let i = 0; i < links.length; i++) {
+                var iconSrc = links[genNum[i]].icon ? 'img/' + links[genNum[i]].icon : 'img/wd1.ico';
+                tobeDisp +=
+                    '<div class="gallery">' +
+                    '<a target="_blank" href="' + links[genNum[i]].url + '">' +
+                    '<div> <img src="' + iconSrc + '" /></div>' +
+                    '<div class="desc"><span>' + links[genNum[i]].title + '</span>' +
+                    '<p>' + links[genNum[i]].desc + '</p></div>' +
+                    '</a></div>'
+            }
+        } else {
+            // Group projects by section
+            var sections = {};
+            
+            // Organize projects into sections
+            for (let i = 0; i < links.length; i++) {
+                var section = links[i].section;
+                if (!sections[section]) {
+                    sections[section] = [];
+                }
+                sections[section].push(links[i]);
+            }
+            
+            // Get sorted section names (alphabetically)
+            var sectionNames = Object.keys(sections).sort();
+            
+            // construct content of the body
+            var tobeDisp = "";
+            
+            // Display projects grouped by section
+            for (let s = 0; s < sectionNames.length; s++) {
+                var sectionName = sectionNames[s];
+                var sectionProjects = sections[sectionName];
+                
+                // Add section header
+                tobeDisp += '<div class="section-header">' + sectionName + '</div>';
+                
+                // Add all projects in this section
+                for (let i = 0; i < sectionProjects.length; i++) {
+                    var project = sectionProjects[i];
+                    var iconSrc = project.icon ? 'img/' + project.icon : 'img/wd1.ico';
+                    tobeDisp +=
+                        '<div class="gallery">' +
+                        '<a target="_blank" href="' + project.url + '">' +
+                        '<div> <img src="' + iconSrc + '" /></div>' +
+                        '<div class="desc"><span>' + project.title + '</span>' +
+                        '<p>' + project.desc + '</p></div>' +
+                        '</a></div>';
+                }
+            }
         }
 
         document.getElementById("pHolder").innerHTML = tobeDisp;
-        let myVar = setTimeout(dispProj, 50000);
+    }
+    
+    function toggleView() {
+        viewMode = viewMode === "section" ? "random" : "section";
+        dispProj();
+        document.getElementById("shuffle").textContent = viewMode === "section" ? "Random View" : "Section View";
     }
 
 
